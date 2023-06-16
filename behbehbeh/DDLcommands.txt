@@ -1,0 +1,4 @@
+create tablename(datatype attribute1, ... , datatype attributen );
+drop tablename;
+alter tablename add(datatype1 column, ... ,datatype columnn);
+rename old_table_name to new_table_name; 
