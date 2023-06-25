@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace behbehbeh
 {
-   public enum Commands
-    {
-        Create, Drop, Alter, Rename, Insert, Update, Delete, Call, Lock, Select
-    }
+  
     public class Parser
     {
+
+        public void GetDataBase()
+        {
+            if(Da)
+        }
         public void Parse(string line)
         {
             Database d;
@@ -29,8 +31,8 @@ namespace behbehbeh
                             d = new Database(ar[2]); 
                         else if (ar[1].Equals("table"))
                         {
-                            t = new Table(ar[2]);
-                            
+
+                            d.CreateTable(ar[2], ar[3]);
                         }
                         break;
                     case "drop":

@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace behbehbeh
 {
-
     
-    public class Table<T> : Database
+
+
+    public interface Table
+    {
+
+    }
+    
+    public class Table<T> : Table where T : Type
     {
         public string name;
         public int columns;
