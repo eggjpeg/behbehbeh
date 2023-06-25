@@ -8,5 +8,6 @@ namespace behbehbeh
 {
     internal class Attribute
     {
+        object name;
     }
 }

@@ -28,7 +28,10 @@ namespace behbehbeh
                         if (ar[1].Equals("db"))
                             d = new Database(ar[2]); 
                         else if (ar[1].Equals("table"))
+                        {
                             t = new Table(ar[2]);
+                            
+                        }
                         break;
                     case "drop":
                         // code block
