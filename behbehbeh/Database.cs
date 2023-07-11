@@ -9,7 +9,7 @@ namespace behbehbeh
     public class Database
     {
         public string name;
-        public List<Table<T>> tables;
+        public List<Table> tables;
 
         public Database(string name)
         {

@@ -11,11 +11,6 @@ namespace behbehbeh
   
     public class Parser
     {
-
-        public void GetDataBase()
-        {
-            if(Da)
-        }
         public void Parse(string line)
         {
             Database d;

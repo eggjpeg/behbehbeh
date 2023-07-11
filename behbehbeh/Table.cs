@@ -10,22 +10,18 @@ namespace behbehbeh
     
 
 
-    public interface Table
-    {
-
-    }
+  
     
-    public class Table<T> : Table where T : Type
+    public class Table
     {
         public string name;
         public int columns;
         public int rows;
-        public Dictionary<string,List<T>> table;
-        List<T> t;
+        public Dictionary<string, Dictionary<string, List<object>>> table;
         public Table(string name)
         {
             this.name = name;
-            table = new Dictionary<string, List<T>>();
+            table = new Dictionary<string, Dictionary<string,List<object>>>();
             rows = 1;
         }
     }
