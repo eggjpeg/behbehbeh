@@ -31,20 +31,9 @@ namespace behbehbeh
             foreach (string attribute in attributes)
             {
                 string[] typeNamePair = attribute.Split();
-                if (typeNamePair[0].Equals("int"))
-                {
-                    t.table.Add(typeNamePair[1], new List<int>());
-                }
-                if (typeNamePair[0].Equals("char"))
-                {
-                    t.table.Add(typeNamePair[1], new List<char>);
-                }
-                else
-                {
-                    t.table.Add(typeNamePair[1], new List<string>);
-                }
+                if (typeNamePair[0].Equals("int") || typeNamePair[0].Equals("char") || typeNamePair[0].Equals("str"))
+                    t.table.Add(typeNamePair[1], new List<object>());
             }
-            Console.WriteLine();
         }
     }
 }

@@ -5,14 +5,29 @@ using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
 namespace behbehbeh
 {
   
     public class Parser
     {
-        public void Parse(string line)
-        {
+
+     
+    public void MyParseMethod()
+    {
+        String input = "your text to parse here";
+        ICharStream stream = CharStreams.fromString(input);
+        ITokenSource lexer = new SQLiteLexer(stream);
+        ITokenStream tokens = new CommonTokenStream(lexer);
+        MyGrammarParser parser = new SQLiteParser(tokens);
+        parser.BuildParseTree = true;
+        IParseTree tree = parser.StartRule();
+        KeyPrinter printer = new KeyPrinter();
+        ParseTreeWalker.Default.Walk(printer, tree);
+    }
+    public void Parse(string line)
+    {
             Database d;
             Table t;
             if (line != null)
@@ -27,7 +42,6 @@ namespace behbehbeh
                         else if (ar[1].Equals("table"))
                         {
 
-                            d.CreateTable(ar[2], ar[3]);
                         }
                         break;
                     case "drop":

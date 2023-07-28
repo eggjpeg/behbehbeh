@@ -17,11 +17,12 @@ namespace behbehbeh
         public string name;
         public int columns;
         public int rows;
-        public Dictionary<string, Dictionary<string, List<object>>> table;
+        //<TableCategoryName, ItemsInCategory>
+        public Dictionary<string, List<object>> table;
         public Table(string name)
         {
             this.name = name;
-            table = new Dictionary<string, Dictionary<string,List<object>>>();
+            table = new Dictionary<string,List<object>>();
             rows = 1;
         }
     }
