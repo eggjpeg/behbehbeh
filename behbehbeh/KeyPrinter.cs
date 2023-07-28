@@ -9,10 +9,10 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 namespace behbehbeh
 {
-    class KeyPrinter : MyGrammarBaseListener
+    class KeyPrinter : SQLiteParserBaseListener
     {
         // override default listener behavior
-        void ExitKey(MyGrammarParser.KeyContext context)
+        void ExitKey(SQLiteParser.EnterKey context)
         {
             Console.WriteLine("Oh, a key!");
         }

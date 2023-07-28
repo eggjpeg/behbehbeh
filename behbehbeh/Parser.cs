@@ -20,7 +20,7 @@ namespace behbehbeh
         ICharStream stream = CharStreams.fromString(input);
         ITokenSource lexer = new SQLiteLexer(stream);
         ITokenStream tokens = new CommonTokenStream(lexer);
-        MyGrammarParser parser = new SQLiteParser(tokens);
+        SQLiteParser parser = new SQLiteParser(tokens);
         parser.BuildParseTree = true;
         IParseTree tree = parser.StartRule();
         KeyPrinter printer = new KeyPrinter();
