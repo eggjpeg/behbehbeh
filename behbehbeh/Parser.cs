@@ -26,6 +26,7 @@ namespace behbehbeh
         KeyPrinter printer = new KeyPrinter();
         ParseTreeWalker.Default.Walk(printer, tree);
     }
+
     public void Parse(string line)
     {
             Database d;
