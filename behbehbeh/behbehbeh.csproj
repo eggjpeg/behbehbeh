@@ -55,6 +55,10 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLiteLexer.cs" />
+    <Compile Include="SQLiteParser.cs" />
+    <Compile Include="SQLiteParserBaseListener.cs" />
+    <Compile Include="SQLiteParserListener.cs" />
     <Compile Include="Table.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13776,6 +13776,5 @@ public partial class SQLiteParser : Parser {
 
 	public static readonly ATN _ATN =
 		new ATNDeserializer().Deserialize(_serializedATN);
-
-
+    internal readonly IParseTree StartRule;
 }

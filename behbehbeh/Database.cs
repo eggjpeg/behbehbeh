@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Antlr4.Runtime.Tree;
 namespace behbehbeh
 {
     public class Database
@@ -31,7 +31,9 @@ namespace behbehbeh
             foreach (string attribute in attributes)
             {
                 string[] typeNamePair = attribute.Split();
-                if (typeNamePair[0].Equals("int") || typeNamePair[0].Equals("char") || typeNamePair[0].Equals("str"))
+                if (typeNamePair[0].Equals("int") || 
+                    typeNamePair[0].Equals("char") || 
+                    typeNamePair[0].Equals("str"))
                     t.table.Add(typeNamePair[1], new List<object>());
             }
         }

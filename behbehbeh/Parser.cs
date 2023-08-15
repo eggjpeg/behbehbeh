@@ -16,13 +16,13 @@ namespace behbehbeh
      
     public void MyParseMethod()
     {
-        String input = "your text to parse here";
+        String input = "input text to parse";
         ICharStream stream = CharStreams.fromString(input);
         ITokenSource lexer = new SQLiteLexer(stream);
         ITokenStream tokens = new CommonTokenStream(lexer);
         SQLiteParser parser = new SQLiteParser(tokens);
         parser.BuildParseTree = true;
-        IParseTree tree = parser.StartRule();
+        IParseTree tree = parser.StartRule;
         KeyPrinter printer = new KeyPrinter();
         ParseTreeWalker.Default.Walk(printer, tree);
     }

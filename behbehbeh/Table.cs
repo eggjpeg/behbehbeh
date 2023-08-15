@@ -8,10 +8,6 @@ using System.Threading.Tasks;
 namespace behbehbeh
 {
     
-
-
-  
-    
     public class Table
     {
         public string name;
