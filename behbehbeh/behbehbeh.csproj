@@ -63,6 +63,7 @@
     <Compile Include="SQLiteParserBaseListener.cs" />
     <Compile Include="SQLiteParserListener.cs" />
     <Compile Include="Table.cs" />
+    <Compile Include="TestExampleDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
