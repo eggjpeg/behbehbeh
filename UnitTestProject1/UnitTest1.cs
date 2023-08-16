@@ -2,6 +2,8 @@
 using System;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
+using System.Data.SqlClient;
+
 namespace UnitTestProject1
 {
     [TestClass]
@@ -62,6 +64,49 @@ namespace UnitTestProject1
             Assert.AreEqual("john", context.name().GetText());
             Assert.IsNull(context.SAYS());
             Assert.AreEqual("john\"hello\"\n", context.GetText());
+        }
+        public void TestInsertAndSelectData()
+        {
+            // Arrange
+            using (var connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;Integrated Security=True"))
+            {
+                connection.Open();
+
+                // Act: Insert sample data
+                using (var command = new SqlCommand(
+                    "INSERT INTO Employees (Id, FirstName, LastName, Salary) VALUES " +
+                    "(4, 'Alice', 'Johnson', 80000.00);",
+                    connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+
+                // Act: Perform a SELECT query
+                using (var command = new SqlCommand("SELECT * FROM Employees WHERE Id = 4;", connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    // Assert: Verify inserted data
+                    Assert.IsTrue(reader.Read());
+                    Assert.AreEqual("Alice", reader["FirstName"]);
+                    Assert.AreEqual("Johnson", reader["LastName"]);
+                    Assert.AreEqual(80000.00, reader["Salary"]);
+                }
+
+                connection.Close();
+            }
+        }
+
+        [TestMethod]
+        public void TestInvalidDatabaseConnection()
+        {
+            // Arrange & Act & Assert: Verify exception for invalid connection string
+            Assert.ThrowsException<SqlException>(() =>
+            {
+                using (var connection = new SqlConnection("InvalidConnectionString"))
+                {
+                    connection.Open();
+                }
+            });
         }
     }
 }
