@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AST.cs" />
     <Compile Include="Attribute.cs" />
     <Compile Include="CQLVisitor.cs" />
     <Compile Include="Database.cs" />
