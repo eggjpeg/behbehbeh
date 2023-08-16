@@ -15,13 +15,13 @@ namespace ASTPrinter
             AntlrInputStream inputStream = new AntlrInputStream(input);
 
             // Create a lexer that feeds off of the input stream
-            SQLiteLexer lexer = new SQLiteLexer(inputStream);
+            YourGeneratedLexer lexer = new YourGeneratedLexer(inputStream);
 
             // Create a buffer of tokens pulled from the lexer
             CommonTokenStream tokens = new CommonTokenStream(lexer);
 
             // Create a parser that feeds off the tokens buffer
-            SQLiteParser parser = new SQLiteParser(tokens);
+            YourGeneratedParser parser = new YourGeneratedParser(tokens);
 
             // Start parsing from the root rule (e.g., query)
             IParseTree tree = parser.query();
@@ -29,7 +29,6 @@ namespace ASTPrinter
             // Print the abstract syntax tree (AST)
             PrintAST(tree, parser);
         }
-
         static void PrintAST(IParseTree tree, SQLiteParser parser)
         {
             PrintASTNode(tree, parser, 0);
