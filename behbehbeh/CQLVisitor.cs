@@ -1,35 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Antlr4.Runtime;
+using System;
+using System.Data.SqlClient; // Assuming you're using SQL Server and ADO.NET
+using behbehbeh; // Change this to the actual namespace of your generated ANTLR classes
 
-namespace behbehbeh
+namespace CqlVisitorExample
 {
-    using Antlr4.Runtime;
-
-        public class CqlVisitor : CqlGrammarBaseVisitor<object>
+    public class CqlVisitor : SQLiteParser<object>
+    {
+        public override object VisitSelectStatement(SQLiteParser.StartRule context)
         {
-            public override object VisitSelectStatement(CqlGrammarParser.SelectStatementContext context)
+            string columns = context.columns.Text;
+            string tableName = context.tableName.Text;
+            string condition = context.condition?.Text;
+
+            string connectionString = "xxxxxx"
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Logic for visiting and processing SELECT statements
-                return base.VisitSelectStatement(context);
+                connection.Open();
+
+                string sqlQuery = $"SELECT {columns} FROM {tableName}";
+
+                if (!string.IsNullOrEmpty(condition))
+                {
+                    sqlQuery += $" WHERE {condition}";
+                }
+
+                using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Console.WriteLine($"Column 1: {reader[0]}, Column 2: {reader[1]}");
+                        }
+                    }
+                }
             }
 
-            public override object VisitWhereClause(CqlGrammarParser.WhereClauseContext context)
-            {
-                // Logic for visiting and processing WHERE clauses
-                return base.VisitWhereClause(context);
-            }
-
-            // Add more overridden methods for other grammar rules as needed
-
-            // Example entry point to start visiting the parse tree
-            public void VisitParseTree(CqlGrammarParser.ParseContext context)
-            {
-                Visit(context);
-            }
+            return base.VisitSelectStatement(context);
         }
 
+
+        //  entry point to visit the parse tree
+        public void VisitParseTree(SQLiteParser.ParseContext context)
+        {
+            Visit(context);
+        }
     }
 
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string sqlQuery = "SELECT FirstName, LastName FROM Customers WHERE Age > 21";
+            AntlrInputStream input = new AntlrInputStream(sqlQuery);
+            CqlGrammarLexer lexer = new CqlGrammarLexer(input);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            CqlGrammarParser parser = new CqlGrammarParser(tokens);
+
+            CqlGrammarParser.ParseContext parseTree = parser.parse();
+
+            CqlVisitor visitor = new CqlVisitor();
+            visitor.VisitParseTree(parseTree);
+
+        }
+    }
+}
