@@ -66,13 +66,17 @@ SELECT: Retrieves data from a table.
 WHERE: Filters data based on conditions.
 JOIN: Combines data from multiple tables.
 
-Error Handling
+## Error Handling
+
 CQL for Project "B³" utilizes ANTLR's built-in error handling mechanisms. It provides informative error messages for syntax errors and unexpected input, aiding developers in identifying and resolving issues in their queries.
 
-Conclusion
+## Conclusion
+
 The C# Query Language (CQL) for Project "B³" provides developers with a powerful tool to query and manipulate data within C# applications using a SQL-like syntax. By leveraging ANTLR, CQL offers a user-friendly and efficient way to interact with databases and other data sources.
 
-References
-ANTLR: http://www.antlr.org/
-ANTLR4 Runtime for C#: https://www.nuget.org/packages/Antlr4.Runtime/
-For more detailed information on ANTLR, refer to its official documentation and resources;
+## References
+
+- ANTLR: [http://www.antlr.org/](http://www.antlr.org/)
+- ANTLR4 Runtime for C#: [https://www.nuget.org/packages/Antlr4.Runtime/](https://www.nuget.org/packages/Antlr4.Runtime/)
+
+For more detailed information on ANTLR, refer to its official documentation and resources.
