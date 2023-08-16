@@ -2,6 +2,7 @@
 using System;
 using System.Data.SqlClient; // Assuming you're using SQL Server and ADO.NET
 using behbehbeh; // Change this to the actual namespace of your generated ANTLR classes
+using System.Collections.Generic;
 
 namespace CqlVisitorExample
 {
@@ -46,6 +47,35 @@ namespace CqlVisitorExample
         public void VisitParseTree(SQLiteParser.ParseContext context)
         {
             Visit(context);
+        }
+        private List<Row> ExecuteSQLCommand(string sqlCommand)
+        {
+            string connectionString = "your_connection_string";
+            List<Row> resultSet = new List<Row>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(sqlCommand, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Row row = new Row();
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                string columnName = reader.GetName(i);
+                                object columnValue = reader.GetValue(i);
+                                row.Columns[columnName] = columnValue;
+                            }
+                            resultSet.Add(row);
+                        }
+                    }
+                }
+            }
+
+            return resultSet;
         }
     }
 
